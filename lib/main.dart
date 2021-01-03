@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:demo_moor/modele/persistence.dart';
 import 'package:demo_moor/screens/todo_new.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,14 +27,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   void _newTodo() {
-    Navigator.of(context).
-      push(MaterialPageRoute(
-        builder: (context) => TodoNew(),
-        fullscreenDialog: true
-      )
-    );
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => TodoNew(), fullscreenDialog: true));
   }
 
   void _onItemCheck(Todo item, bool checked) {
@@ -62,27 +56,23 @@ class _MyHomePageState extends State<MyHomePage> {
             return new Center(
               child: Text(
                 "Aucune entrée",
-                style: TextStyle(
-                  fontSize: 20.0
-                ),
+                style: TextStyle(fontSize: 20.0),
               ),
             );
-          else return ListView.separated(
-            itemBuilder: (context, index) =>
-              ListTile(
-                title: Text(todos[index].content),
-                leading: Checkbox(
-                  value: todos[index].checked,
-                  onChanged: (bool) => _onItemCheck(todos[index], bool),
-                ),
-              ),
-            separatorBuilder: (context, index) =>
-              Divider(
-                color: Colors.grey[400],
-                height: 1.0,
-              ),
-            itemCount: todos.length
-          );
+          else
+            return ListView.separated(
+                itemBuilder: (context, index) => ListTile(
+                      title: Text(todos[index].content.toString()),
+                      leading: Checkbox(
+                        value: todos[index].checked,
+                        onChanged: (bool) => _onItemCheck(todos[index], bool),
+                      ),
+                    ),
+                separatorBuilder: (context, index) => Divider(
+                      color: Colors.grey[400],
+                      height: 1.0,
+                    ),
+                itemCount: todos.length);
         },
       ),
       floatingActionButton: FloatingActionButton(

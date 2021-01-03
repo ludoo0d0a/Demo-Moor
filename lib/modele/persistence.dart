@@ -24,6 +24,7 @@ class Database extends _$Database {
   }
 
   void insert(Todo todo) {
-    into(todos).insert(todo, orReplace: true);
+    // into(todos).insert(todo, orReplace: true);
+    into(todos).insert(todo, mode: InsertMode.insertOrReplace);
   }
 }
